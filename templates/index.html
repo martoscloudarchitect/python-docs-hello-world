@@ -2,25 +2,36 @@
 <html>
 <head>
     <title>Categories</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>Parent Category</th>
-                <th>Category Name</th>
-                <th>Product Category ID</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in rows %}
-            <tr>
-                <td>{{ row[0] }}</td>
-                <td>{{ row[1] }}</td>
-                <td>{{ row[2] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="container">
+        <h1>Categories</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Category ID</th>
+                    <th>Name</th>
+                    <th>Parent Category ID</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <form method="POST">
+                        <td>{{ row[0] }}</td>
+                        <td><input type="text" class="form-control" name="Name" value="{{ row[1] }}"></td>
+                        <td><input type="text" class="form-control" name="ParentCategoryID" value="{{ row[2] }}"></td>
+                        <td>
+                            <input type="hidden" name="CategoryID" value="{{ row[0] }}">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </td>
+                    </form>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
