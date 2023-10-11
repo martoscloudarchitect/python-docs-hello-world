@@ -27,6 +27,7 @@ def hello():
      s = ' '
      for row in cursor:
          s += ''.join(str(row))
+         s += '<hr>'
          print(row)
      #s = '!! Azure'
      return "hello"+s
