@@ -21,14 +21,12 @@ def hello():
      username = os.environ.get("DB_USER")
      password = os.environ.get("DB_PASS")
 
-
-    cnxn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
-    cursor = cnxn.cursor()
-
-    cursor.execute('SELECT * FROM [SalesLT].[vGetAllCategories]')
-    s = ' '
-    for row in cursor:
-        s += ''.join(row)
-        print(row)
-    #s = '!! Azure'
-    return "hello"+s
+     cnxn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
+     cursor = cnxn.cursor()
+     cursor.execute('SELECT * FROM [SalesLT].[vGetAllCategories]')
+     s = ' '
+     for row in cursor:
+         s += ''.join(row)
+         print(row)
+     #s = '!! Azure'
+     return "hello"+s
