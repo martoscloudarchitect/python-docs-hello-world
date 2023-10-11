@@ -30,4 +30,4 @@ def hello():
          s += '<hr>'
          print(row)
      #s = '!! Azure'
-     return "hello"+s
+     return s
