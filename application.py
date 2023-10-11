@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-import pyodbc
+import pyodbc, os
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
