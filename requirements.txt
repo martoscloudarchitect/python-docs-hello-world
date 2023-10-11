@@ -21,3 +21,7 @@ finnhub-python
 json2table
 seaborn
 flask-mobility
+azure.identity
+azure.keyvault.secrets
+azure.storage.queue
+pyodbc
