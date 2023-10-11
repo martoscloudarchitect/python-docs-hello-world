@@ -1,6 +1,9 @@
 from flask import Flask
-import pyodbc 
+import pyodbc, os
+from azure.keyvault.secrets import SecretClient
+from azure.identity import DefaultAzureCredential
 app = Flask(__name__)
+app.config["DEBUG"] = True
 
 @app.route("/")
 def hello():
