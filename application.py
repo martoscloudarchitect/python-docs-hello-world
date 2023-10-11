@@ -1,33 +1,27 @@
-from flask import Flask
+from flask import Flask, render_template
 import pyodbc, os
-from azure.keyvault.secrets import SecretClient
-from azure.identity import DefaultAzureCredential
+
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
+# Set up the database connection
+server = os.environ.get("DB_SERVER")
+database = os.environ.get("DB_NAME")
+username = os.environ.get("DB_USER")
+password = os.environ.get("DB_PASS")
+driver= "{ODBC Driver 18 for SQL Server}"
+cnxn = pyodbc.connect(f"DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password}")
+
+# Define the route for the web page
 @app.route("/")
-def hello():
-     
-    # Some other example server values are
-    # server = 'localhost\sqlexpress' # for a named instance
-    # server = 'myserver,port' # to specify an alternate port
-    # server = 'tcp:mytest.centralus.cloudapp.azure.com' 
-    # database = 'test' 
-    # username = 'ndb' 
-    # password = 'test1789###' 
+def index():
+    # Execute the SQL query and fetch the results
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT TOP (1000) * FROM [SalesLT].[vGetAllCategories]")
+    rows = cursor.fetchall()
 
-     server = os.environ.get("DB_SERVER")
-     database = os.environ.get("DB_NAME")
-     username = os.environ.get("DB_USER")
-     password = os.environ.get("DB_PASS")
+    # Render the results in an HTML table format
+    return render_template("index.html", rows=rows)
 
-     cnxn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
-     cursor = cnxn.cursor()
-     cursor.execute('SELECT * FROM [SalesLT].[vGetAllCategories]')
-     s = ' '
-     for row in cursor:
-         s += ''.join(str(row))
-         s += '<br>'
-         print(row)
-     #s = '!! Azure'
-     return s
+if __name__ == "__main__":
+    app.run()
