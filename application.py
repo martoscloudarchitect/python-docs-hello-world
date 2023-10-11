@@ -26,7 +26,7 @@ def hello():
      cursor.execute('SELECT * FROM [SalesLT].[vGetAllCategories]')
      s = ' '
      for row in cursor:
-         s += ''.join(row)
+         s += ''.join(str(row))
          print(row)
      #s = '!! Azure'
      return "hello"+s
