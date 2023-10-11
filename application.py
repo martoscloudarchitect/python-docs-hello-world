@@ -25,7 +25,7 @@ def hello():
     cnxn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
     cursor = cnxn.cursor()
 
-    cursor.execute('SSELECT * FROM [SalesLT].[vGetAllCategories]')
+    cursor.execute('SELECT * FROM [SalesLT].[vGetAllCategories]')
     s = ' '
     for row in cursor:
         s += ''.join(row)
