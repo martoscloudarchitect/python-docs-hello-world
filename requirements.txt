@@ -1,7 +1,5 @@
 --find-links https://download.pytorch.org/whl/torch_stable.html
-numpy
 requests
-pandas
 oauth2client
 mysqlclient
 json2table
