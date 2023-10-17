@@ -19,7 +19,8 @@ def index():
     cursor = cnxn.cursor()
     cursor.execute("SELECT TOP (1000) * FROM [SalesLT].[vGetAllCategories]")
     rows = cursor.fetchall()
-
+    cursor.close()
+    cnxn.close()
     # Render the results in an HTML table format
     return render_template("index.html", rows=rows)
 
