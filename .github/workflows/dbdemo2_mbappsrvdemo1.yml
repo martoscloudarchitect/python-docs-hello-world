@@ -16,6 +16,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Set up Python version
         uses: actions/setup-python@v1
@@ -64,4 +67,3 @@ jobs:
         with:
           app-name: 'mbAppSrvDemo1'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E7465AB5FE6D4884B26ED05457F8203E }}
