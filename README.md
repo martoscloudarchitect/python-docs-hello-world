@@ -8,7 +8,7 @@ products:
 - azure-app-service
 ---
 
-# Python Flask sample for Azure App Service (Linux)
+# Python Flask sample for Azure App Service  (Linux)
 
 This is a minimal sample app that demonstrates how to run a Python Flask application on Azure App Service on Linux.
 
